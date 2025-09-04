@@ -2,7 +2,7 @@
   "name": "create-primebiplugin",
   "version": "0.1.0",
   "private": true,
-  "description": "Initialize an Apache Superset chart plugin template (PrimeBI flavor)",
+  "description": "Initialize an primeBI chart plugin template (PrimeBI flavor)",
   "bin": {
     "create-primebiplugin": "bin/create-primebiplugin.js"
   },
@@ -27,12 +27,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@example.com/primebi/create-primebiplugin.git"
+    "url": "git+ssh://git@github.com/CoderSxy/create-primebiplugin.git"
   },
   "bugs": {
-    "url": "https://example.com/primebi/create-primebiplugin/issues"
+    "url": "https://github.com/CoderSxy/create-primebiplugin/issues"
   },
-  "homepage": "https://example.com/primebi/create-primebiplugin#readme",
+  "homepage": "https://github.com/CoderSxy/primebi-plugin",
   "dependencies": {
     "kleur": "^4.1.5",
     "minimist": "^1.2.8"
