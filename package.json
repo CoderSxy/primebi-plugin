@@ -1,0 +1,40 @@
+{
+  "name": "create-primebiplugin",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Initialize an Apache Superset chart plugin template (PrimeBI flavor)",
+  "bin": {
+    "create-primebiplugin": "bin/create-primebiplugin.js"
+  },
+  "files": [
+    "bin",
+    "template"
+  ],
+  "type": "module",
+  "license": "MIT",
+  "keywords": [
+    "superset",
+    "plugin",
+    "chart",
+    "generator",
+    "scaffold"
+  ],
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@example.com/primebi/create-primebiplugin.git"
+  },
+  "bugs": {
+    "url": "https://example.com/primebi/create-primebiplugin/issues"
+  },
+  "homepage": "https://example.com/primebi/create-primebiplugin#readme",
+  "dependencies": {
+    "kleur": "^4.1.5",
+    "minimist": "^1.2.8"
+  }
+} 
