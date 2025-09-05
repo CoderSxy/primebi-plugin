@@ -5,34 +5,45 @@ Initialize an Apache Superset chart plugin template .
 ## Usage
 
 - With npm init:
+
+
+### Step1
 - Please run this command in the superset-frontend/plugins directory
-
 ```bash
-npm init create-primebiplugin@latest my-superset-plugin \
-  -- --name @primebi/plugin-chart-sample \
-  --label "PrimeBI Sample" \
-  --class PrimeBISamplePlugin
+npm init create-primebiplugin@latest my-superset-plugin 
 ```
-
 - Or via npx:
-
 ```bash
-npx create-primebiplugin my-superset-plugin \
-  --name @primebi/plugin-chart-sample \
-  --label "PrimeBI Sample" \
-  --class PrimeBISamplePlugin
+npx create-primebiplugin my-superset-plugin 
 ```
 
-Add the plugin in superset-frontend/src/visualizations/presets/MainPreset.js
+### Step2
+Add the local dependency in superset-frontend/package.json
 ```js
-import { MySupersetPlugin } from 'my-superset-plugin';
-new MySupersetPlugin().configure({ key: 'my-superset-plugin' }),
+{
+  ...
+  "dependencies": {
+    ...
+    "@superset-ui/my-superset-plugin": "file:./plugins/my-superset-plugin",
+    ...
+  }
+  ...
+}
 ```
 
+### Step3
 Run the following command in the superset-frontend directory
 ```bash
 npm install
 ```
+
+Add the plugin in superset-frontend/src/visualizations/presets/MainPreset.js
+```js
+import { MySupersetPlugin } from '@superset-ui/my-superset-plugin';
+new MySupersetPlugin().configure({ key: 'my-superset-plugin' }),
+```
+
+
 
 This way, you don't need to follow the official plugin installation process and can skip the following parts from the official example.
 ```bash
@@ -58,11 +69,6 @@ npm run dev
 ## To add the package to Superset, go to the superset-frontend subdirectory in your Superset source folder run
 npm i -S /tmp/superset-plugin-chart-hello-world
 ```
-
-## Options
-- `--name` or `-n`: package name for the generated plugin
-- `--label`: human-readable chart label shown in Superset
-- `--class`: chart plugin class name (defaults to derived from name)
 
 ## Template source
 Based on Superset generator templates:
