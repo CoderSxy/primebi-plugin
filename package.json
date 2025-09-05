@@ -1,6 +1,6 @@
 {
   "name": "create-primebiplugin",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "private": false,
   "description": "Initialize an primeBI chart plugin template (PrimeBI flavor)",
   "bin": {
