@@ -54,6 +54,46 @@ function replaceInFiles(rootDir, replacements) {
   walk(rootDir);
 }
 
+function renamePlaceholders(rootDir, replacements) {
+  // depth-first: rename files/dirs whose names contain any placeholder key
+  const entries = [];
+  const walk = (dir) => {
+    for (const entry of fs.readdirSync(dir)) {
+      const p = path.join(dir, entry);
+      const stat = fs.statSync(p);
+      if (stat.isDirectory()) {
+        walk(p);
+      }
+      entries.push(p);
+    }
+  };
+  walk(rootDir);
+  // Sort by path length descending to rename children before parents
+  entries.sort((a, b) => b.length - a.length);
+  for (const oldPath of entries) {
+    const dir = path.dirname(oldPath);
+    const base = path.basename(oldPath);
+    let newBase = base;
+    Object.entries(replacements).forEach(([from, to]) => {
+      if (newBase.includes(from)) newBase = newBase.split(from).join(to);
+    });
+    if (newBase !== base) {
+      const newPath = path.join(dir, newBase);
+      if (!fs.existsSync(newPath)) {
+        fs.renameSync(oldPath, newPath);
+      } else {
+        // If destination exists, append suffix to avoid collision
+        const parsed = path.parse(newPath);
+        const alt = path.join(
+          parsed.dir,
+          `${parsed.name}.generated${parsed.ext}`
+        );
+        fs.renameSync(oldPath, alt);
+      }
+    }
+  }
+}
+
 function main() {
   const args = minimist(process.argv.slice(2));
   const targetArg = args._[0] || ".";
@@ -73,12 +113,17 @@ function main() {
 
   copyDir(templateDir, targetDir);
 
-  replaceInFiles(targetDir, {
+  const replacements = {
     "{{PLUGIN_PACKAGE_NAME}}": pkgName,
     "{{PLUGIN_CLASS_NAME}}": className,
     PrimeBIChartPlugin: className,
     "{{PLUGIN_LABEL}}": label,
-  });
+  };
+
+  // First, rename filenames/directories containing placeholders
+  renamePlaceholders(targetDir, replacements);
+  // Then, replace placeholders inside file contents
+  replaceInFiles(targetDir, replacements);
 
   console.log(
     kleur.green("✔ Generated PrimeBI plugin template at:"),
