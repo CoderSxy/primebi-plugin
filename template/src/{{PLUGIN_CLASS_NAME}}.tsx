@@ -17,7 +17,7 @@
  * under the License.
  */
 import React, { useEffect, createRef } from "react";
-import { styled } from "@@superset-ui/core";
+import { styled } from "@superset-ui/core";
 import { {{PLUGIN_CLASS_NAME}}Props, {{PLUGIN_CLASS_NAME}}StylesProps } from "./types";
 
 const Styles = styled.div<{{PLUGIN_CLASS_NAME}}StylesProps>`
