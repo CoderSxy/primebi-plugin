@@ -1,8 +1,6 @@
 module.exports = {
-  testEnvironment: "jsdom",
-  transform: {
-    "^.+\\.(ts|tsx)$": ["ts-jest", { tsconfig: "tsconfig.json" }],
+  moduleFileExtensions: ["mock.js", "ts", "tsx", "js", "jsx", "json", "node"],
+  moduleNameMapper: {
+    "\.(gif|ttf|eot|png|jpg)$": "<rootDir>/test/__mocks__/mockExportString.js",
   },
-  moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json"],
-  setupFilesAfterEnv: ["<rootDir>/test/setupTests.ts"],
 };

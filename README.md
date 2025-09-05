@@ -22,11 +22,12 @@ npx create-primebiplugin my-superset-plugin \
   --class PrimeBISamplePlugin
 ```
 
-Then inside the generated folder:
+Then in the generated folder:
 
 ```bash
 npm install
-npm run build
+npm run build   # builds lib/ (CJS), esm/ (ESM), and lib/*.d.ts
+npm test
 ```
 
 ## Options

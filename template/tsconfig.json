@@ -1,17 +1,18 @@
 {
   "compilerOptions": {
-    "target": "ES2019",
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "declaration": true,
-    "outDir": "dist",
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "resolveJsonModule": true,
-    "jsx": "react-jsx",
-    "types": ["node", "jest"]
+    "declarationDir": "lib",
+    "outDir": "lib",
+    "rootDir": "src"
   },
-  "include": ["src", "types", "test"]
-} 
+  "exclude": ["lib", "test"],
+  "extends": "../../tsconfig.json",
+  "include": ["src/**/*", "types/**/*", "../../types/**/*"],
+  "references": [
+    {
+      "path": "../../packages/superset-ui-chart-controls"
+    },
+    {
+      "path": "../../packages/superset-ui-core"
+    }
+  ]
+}
