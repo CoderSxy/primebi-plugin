@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen } from "@@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import {{PLUGIN_CLASS_NAME}} from "../src/{{PLUGIN_CLASS_NAME}}";
 
 describe("{{PLUGIN_CLASS_NAME}}", () => {

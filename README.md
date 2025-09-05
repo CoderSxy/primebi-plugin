@@ -1,10 +1,11 @@
 # create-primebiplugin
 
-Initialize an Apache Superset chart plugin template (PrimeBI flavor).
+Initialize an Apache Superset chart plugin template .
 
 ## Usage
 
 - With npm init:
+- Please run this command in the superset-frontend/plugins directory
 
 ```bash
 npm init create-primebiplugin@latest my-superset-plugin \
@@ -22,12 +23,40 @@ npx create-primebiplugin my-superset-plugin \
   --class PrimeBISamplePlugin
 ```
 
-Then in the generated folder:
+Add the plugin in superset-frontend/src/visualizations/presets/MainPreset.js
+```js
+import { MySupersetPlugin } from 'my-superset-plugin';
+new MySupersetPlugin().configure({ key: 'my-superset-plugin' }),
+```
 
+Run the following command in the superset-frontend directory
 ```bash
 npm install
-npm run build   # builds lib/ (CJS), esm/ (ESM), and lib/*.d.ts
-npm test
+```
+
+This way, you don't need to follow the official plugin installation process and can skip the following parts from the official example.
+```bash
+npm i -g yo
+cd superset-frontend/packages/generator-superset
+npm i
+npm link
+
+## This step is in a separate directory. You can install this plugin directly in your project directory and use it as a local plugin.
+mkdir /tmp/superset-plugin-chart-hello-world
+cd /tmp/superset-plugin-chart-hello-world
+
+## Initialize the viz plugin:
+yo @superset-ui/superset
+
+## To build the viz plugin, run the following commands:
+npm i --force
+npm run build
+
+## Local Development
+npm run dev
+
+## To add the package to Superset, go to the superset-frontend subdirectory in your Superset source folder run
+npm i -S /tmp/superset-plugin-chart-hello-world
 ```
 
 ## Options

@@ -1,4 +1,4 @@
-const { getConfig } = require("@@airbnb/config-babel");
+const { getConfig } = require("@airbnb/config-babel");
 
 const config = getConfig({
   library: true,
@@ -15,6 +15,6 @@ const config = getConfig({
 config.plugins = [
   ["babel-plugin-transform-dev", { evaluate: false }],
   ["babel-plugin-typescript-to-proptypes", { loose: true }],
-  ["@@babel/plugin-proposal-class-properties", { loose: true }],
+  ["@babel/plugin-proposal-class-properties", { loose: true }],
 ];
 module.exports = config;

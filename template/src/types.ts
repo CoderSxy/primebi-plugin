@@ -20,7 +20,7 @@ import {
   QueryFormData,
   supersetTheme,
   TimeseriesDataRecord,
-} from "@@superset-ui/core";
+} from "@superset-ui/core";
 
 export interface {{PLUGIN_CLASS_NAME}}StylesProps {
   height: number;
